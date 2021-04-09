@@ -25,8 +25,10 @@ node {
       // login Azure
       withCredentials([usernamePassword(credentialsId: '<AzureServicePrinciple>', passwordVariable: 'y7q8Uvj1Ki6ZWCzXed5E-PNV.TpBxzOsSn', usernameVariable: '137be1ee-5a52-4de8-b1ac-8b97506406f1')]) {
        sh '''
-          az login --service-principal -u y7q8Uvj1Ki6ZWCzXed5E-PNV.TpBxzOsSn  -p 137be1ee-5a52-4de8-b1ac-8b97506406f1 -t 0adb040b-ca22-4ca6-9447-ab7b049a22ff
-          az account set -s 117a4d10-5a5a-41d0-a9f6-8f7c15c4ef4d
+        
+             az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID
+             az account set -s $AZURE_SUBSCRIPTION_ID
+         
         '''
       }
       // get publish settings
